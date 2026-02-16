@@ -8,6 +8,14 @@
 #include "proc.h"
 
 int
+sys_shutdown(void)
+{
+    // Call the function that actually triggers the hardware shutdown
+    outw(0x604, 0x2000);  // this is the QEMU / Bochs ACPI shutdown port
+    return 0;             // should never return, but good practice
+}
+
+int
 sys_fork(void)
 {
   return fork();
